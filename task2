@@ -1,0 +1,131 @@
+class Table:
+    __mass = 0
+
+    def __init__(self, mass):
+        self.__mass = mass
+
+    def get_mass(self):
+        return self.__mass
+
+
+class DinnerTable(Table):
+    __places = 0
+
+    def __init__(self, mass1 = 0):
+        Table.__init__(self, mass1)
+        self.__places = mass1 / 5
+
+    def get_places(self, ):
+        return self.__places
+
+
+class Truck:
+    __max_mass = 0
+
+    def __init__(self, max_mass):
+        self.__max_mass = max_mass
+
+        self.__tables = []
+
+    def get_max_mass(self):
+        return self.__max_mass
+
+    def __current_mass(self):
+        s = 0
+        for i in self.__tables:
+            s += i.get_mass()
+        return s
+
+    def reserved_mass(self):
+        return self.__max_mass - self.__current_mass()
+
+    def add_table(self, new_table):
+        if new_table.get_mass() <= self.reserved_mass():
+            self.__tables.append(new_table)
+            print("Стол массой " + str(new_table.get_mass()) + " загружен в грузовик")
+        else:
+            print("Стол массой " + str(new_table.get_mass()) + " не может быть загружен в грузовик. Осталось " + str(self.reserved_mass()) + " кг")
+
+    def count_by_mass(self, needle, selector):
+        s = 0
+        for i in self.__tables:
+            if selector (i) == needle:
+                s += 1
+            return s
+
+    def remove_tables(self):
+        self.__tables.clear()
+
+def tables_to_string(num):
+    s = str(num)
+    last_s = s[-1]
+    if 5 <= num <= 20:
+        return 'столов'
+    elif last_s == '1':
+        return 'стол'
+    elif last_s == '2' or last_s == '3' or last_s == '4':
+        return 'стола'
+    else:
+        return 'столов'
+
+
+truck = [
+    Truck(50),
+    Truck(60)]
+
+table = [
+    DinnerTable(11),
+    DinnerTable(22)]
+
+need = [
+    3,
+    3
+]
+
+while True:
+    select = 0
+    sums = list([])
+    sums.append(
+        truck[0].count_by_mass(
+            Table[0].get_mass(),
+            Table.get_mass
+        ) +
+        truck[1].count_by_mass(
+            Table[0].get_mass(),
+            Table.get_mass
+        )
+    )
+    sums.append(
+        truck[0].count_by_mass(
+            Table[1].get_mass(),
+            Table.get_mass
+        ) +
+        truck[1].count_by_mass(
+            Table[1].get_mass(),
+            Table.get_mass
+        )
+    )
+    if sums[0] == need[0] and sums[1] == need[1]:
+        print("Congratulations")
+        break
+
+    while True:
+        print("Есть 2 грузовика грузоподъемностью "+ str(truck[0].get_max_mass())+ " и " + str(truck[1].get_max_mass()))
+        print("Нужно завезти " + str(need[0]) + " " +
+              tables_to_string(need[0]) + " по " +
+              str(table[0].get_mass()) + " кг и " +
+              str(need[1]) + " " + tables_to_string(need[1]) + " по " +
+              str(table[1].get_mass()) + " кг ")
+        print("Уже погружено " + str(sums[0]) + " " +
+              tables_to_string(sums[0]) + " по " +
+              str(table[0].get_mass()) + " кг и " +
+              str(sums[1]) + " " + 
+              tables_to_string(sums[1]) + " по " +
+              str(table[1].get_mass()) + " кг ")
+
+
+#newTruck1.add_table(newTable[0])
+#newTruck.add_table(newTable[1])
+#newTruck.add_table(newTable[2])
+
+
