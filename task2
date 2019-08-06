@@ -127,12 +127,12 @@ while True:
         "2 - грузим стол массой " + str(table[1].get_mass()) + " кг в грузовик 1;\n" +
         "3 - грузим стол массой " + str(table[0].get_mass()) + " кг в грузовик 2;\n" +
         "4 - грузим стол массой " + str(table[1].get_mass()) + " кг в грузовик 2;\n")
-        
+
         select = int(input())
-        
+
         if i <= select <= 5:
             break
-            
+
     if select == 1:
         truck[0].add_table(table[0])
     elif select == 2:
@@ -142,11 +142,15 @@ while True:
     elif select == 4:
         truck[1].add_table(table[1])
     elif select == 5:
-        truck[0].add_table(table[0])
-        
-        
+        truck[0].remove_tables()
+        truck[1].remove_tables()
+
+
 #newTruck1.add_table(newTable[0])
 #newTruck.add_table(newTable[1])
 #newTruck.add_table(newTable[2])
+
+
+
 
 
