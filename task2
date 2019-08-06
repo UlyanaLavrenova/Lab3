@@ -119,11 +119,32 @@ while True:
         print("Уже погружено " + str(sums[0]) + " " +
               tables_to_string(sums[0]) + " по " +
               str(table[0].get_mass()) + " кг и " +
-              str(sums[1]) + " " + 
+              str(sums[1]) + " " +
               tables_to_string(sums[1]) + " по " +
               str(table[1].get_mass()) + " кг ")
 
-
+        print("Что делать?\n" + "1 - грузим стол массой " + str(table[0].get_mass()) + " кг в грузовик 1;\n" +
+        "2 - грузим стол массой " + str(table[1].get_mass()) + " кг в грузовик 1;\n" +
+        "3 - грузим стол массой " + str(table[0].get_mass()) + " кг в грузовик 2;\n" +
+        "4 - грузим стол массой " + str(table[1].get_mass()) + " кг в грузовик 2;\n")
+        
+        select = int(input())
+        
+        if i <= select <= 5:
+            break
+            
+    if select == 1:
+        truck[0].add_table(table[0])
+    elif select == 2:
+        truck[0].add_table(table[1])
+    elif select == 3:
+        truck[1].add_table(table[0])
+    elif select == 4:
+        truck[1].add_table(table[1])
+    elif select == 5:
+        truck[0].add_table(table[0])
+        
+        
 #newTruck1.add_table(newTable[0])
 #newTruck.add_table(newTable[1])
 #newTruck.add_table(newTable[2])
